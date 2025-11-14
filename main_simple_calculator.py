@@ -12,7 +12,7 @@ def roll_dice(n_dice: int = 1) -> list[int]:
 
 @mcp.tool()
 def random_number(min_val: int = 1, max_val: int = 100) -> int:
-    """Get random number."""
+    """Get random number between min number and max number."""
     return random.randint(min_val,max_val)
 
 @mcp.resource('info://server')

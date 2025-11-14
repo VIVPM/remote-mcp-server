@@ -34,6 +34,7 @@ def add_expense(date, amount, category, subcategory="", note=""):
 
 @mcp.tool()
 def update_expense(date, category, amount, subcategory=None, note=None):
+    '''Update an existing expense entry to the database.'''
     with sqlite3.connect(DB_PATH) as c:
         set_parts = ["amount = ?"]
         params = [amount]
@@ -50,6 +51,7 @@ def update_expense(date, category, amount, subcategory=None, note=None):
 
 @mcp.tool()
 def delete_expense(date, category, subcategory=None):
+    '''Delete an existing expense entry to the database.'''
     with sqlite3.connect(DB_PATH) as c:
         query = "DELETE FROM expenses WHERE date = ? AND category = ?"
         params = [date, category]
