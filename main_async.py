@@ -102,7 +102,8 @@ async def list_expenses(start_date, end_date):
                 (start_date, end_date)
             )
             cols = [d[0] for d in cur.description]
-            return [dict(zip(cols, r)) for r in cur.fetchall()]
+            rows = await cur.fetchall()
+            return [dict(zip(cols, r)) for r in rows]
     except Exception as e:
         return {"status": "error", "message": f"Error listing expenses: {str(e)}"}
 
@@ -128,7 +129,8 @@ async def summarize(start_date, end_date, category=None):
 
             cur = await c.execute(query, params)
             cols = [d[0] for d in cur.description]
-            return [dict(zip(cols, r)) for r in cur.fetchall()]
+            rows = await cur.fetchall()
+            return [dict(zip(cols, r)) for r in rows]
     except Exception as e:
         return {"status": "error", "message": f"Error summarizing expenses: {str(e)}"}
     
